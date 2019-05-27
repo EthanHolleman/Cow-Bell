@@ -58,7 +58,7 @@ def scrape():
 
                 entries.append((id, email, phone, location, descrip, head))
                 listings.write(id + "," + name + "," + email + "," + phone + "," + location + "," + descrip +','+ head + "\n")
-                print(id + ' ' + email + ' ' + ' ' + location)
+                print(id + ' ' + email + ' ' + ' ' + ' ' + location)
 
             except IndexError:
                 continue
