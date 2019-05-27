@@ -2,7 +2,6 @@ import requests
 from bs4 import *
 url = 'https://www.cattle-exchange.com/'
 
-
 def scrape():
     breedList = []
     headList = []
@@ -35,7 +34,9 @@ def scrape():
             entry = (str(list)).split('"')
             headList.append(url+entry[3])
             counter += 1
+
     with open("Listings.txt", "w") as listings:
+
 
         for head in headList:
             #requests each listing page and gets listing info
@@ -47,9 +48,7 @@ def scrape():
             splitB = (str(info).split(">p"))
             splitC = (str(info).split("<div"))
 
-
             try:
-
                 id = clean(splitA[2])
                 name = clean(splitC[3])
                 email = clean(splitA[5].split(" ")[2])
@@ -57,13 +56,9 @@ def scrape():
                 phone = clean(splitC[4].split(">")[1])
                 location = clean(splitC[5].split(">")[1])
 
-
-                entries.append((id, email, phone, location, descrip))
-
-                listings.write(id + "," + name + "," + email + "," + phone + "," + location + "," + descrip + "\n")
-                counter += 1
-                if counter % 100: print(counter)
-
+                entries.append((id, email, phone, location, descrip, head))
+                listings.write(id + "," + name + "," + email + "," + phone + "," + location + "," + descrip +','+ head + "\n")
+                print(id + ' ' + email + ' ' + ' ' + location)
 
             except IndexError:
                 continue

@@ -12,13 +12,13 @@ def post():
         for line in lists:
             headList.append(line)
 
-    for i in range(1,4):
-        rand = random.randint(0,len(headList))
-        listing = headList[rand].split(",")
-        title = "ID: {} | Owner: {} | Location: {}".format(listing[0],listing[1],listing[4])
-        #title = "ID: " + listing[0] + " | "+ " Owner: " + listing[1] + " Location: " + listing[4]
-        post = listing[5] + "\n\nContact Info\n\n" + "Email: " +listing[2] + "\n\n" + "Phone " + listing[3]
 
-        print("Now posting {}".format(title))
+    rand = random.randint(0,len(headList)-1)
+    listing = headList[rand].split(",")
+    title = "ID: {} | Owner: {} | Location: {}".format(listing[0],listing[1],listing[4])        #title = "ID: " + listing[0] + " | "+ " Owner: " + listing[1] + " Location: " + listing[4]
+    post = listing[5] + "\n\nContact Info\n\n" + "Email: " + listing[2] + "\n\nPhone: " + str(listing[3]) + '\n\n[Link to listing]' + '(' + listing[6] + ')'
 
-        reddit.subreddit('CattleExchange').submit(title = title, selftext = post)
+    print("Now posting {}".format(title))
+    print(post)
+
+    reddit.subreddit('CattleExchange').submit(title = title, selftext = post)
