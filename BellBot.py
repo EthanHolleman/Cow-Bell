@@ -1,5 +1,9 @@
 #!/usr/bin/python
-import praw, random
+from scrape import *
+import praw
+import random
+
+
 def post():
     reddit = praw.Reddit(client_id='su_QWDMHVla0Fw',
                          client_secret='secret',
@@ -12,13 +16,15 @@ def post():
         for line in lists:
             headList.append(line)
 
+    rand = random.randint(0, len(headList)-1)
+    listing = tuple(headList[rand].split(","))
+    ID, owner, email, phone, location, description, link = listing
+    image_path = get_listing_image(link)
 
-    rand = random.randint(0,len(headList)-1)
-    listing = headList[rand].split(",")
-    title = "ID: {} | Owner: {} | Location: {}".format(listing[0],listing[1],listing[4])        #title = "ID: " + listing[0] + " | "+ " Owner: " + listing[1] + " Location: " + listing[4]
-    post = listing[5] + "\n\nContact Info\n\n" + "Email: " + listing[2] + "\n\nPhone: " + str(listing[3]) + '\n\n[Link to listing]' + '(' + listing[6] + ')'
+    title = "ID: {} | Owner: {} | Location: {}".format(ID, owner, location)
+    post = description + "\n\nContact Info\n\n" + "Email: " + email + "\n\nPhone: "
+    + phone + '\n\n[Link to listing]' + '(' + link + ')'
 
     print("Now posting {}".format(title))
-    print(post)
 
-    reddit.subreddit('CattleExchange').submit(title = title, selftext = post)
+    reddit.subreddit('CattleExchange').submit(title=title, selftext=post)

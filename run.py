@@ -13,12 +13,14 @@ while True:
         counter = 0
         try:
             print('scraping cattle exchange now')
-            scrape()
+            listings = scrape()
+            print('getting cattle listings')
+            get_listings_text(listings)
             print('scrape is complete')
         except:
             print('exception occured')
 
-
+        # upload to one drive folder
         with open(listings, 'rb') as f:
             dest_path = datetime.datetime.today().strftime('%d-%m-%Y')
             dest_path = '/Cowbell/{}_listings.txt'.format(dest_path)
