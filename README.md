@@ -9,6 +9,10 @@ The cattle exchange provides marketplaces for dozens of different breeds of catt
 
 You can also check out the [r/cattleexchange](https://www.reddit.com/r/CattleExchange/) subreddit which uses a python based bot to post random listings taken from the cow-bell script.
 
+View subbreddit stats and traffic information [at this link](https://subredditstats.com/r/cattleexchange)
+
+You can also find an archive of listings as text files at the projects public dropbox folder [located here](https://www.dropbox.com/home/Apps/Cowbellringer/Cowbell)
+
 ## Output Format
 
 | Listing ID    | Name      | Email              | Phone       | Description            |
